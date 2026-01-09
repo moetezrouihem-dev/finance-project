@@ -10,21 +10,21 @@ Finance Manager est une application web monopage (SPA) développée dans le cadr
 - 📊 Graphiques interactifs Chart.js
 - 🎨 Design Glassmorphism moderne
 
-✨ Interface Glassmorphism avec dégradés animés
-📱 Design 100% Responsive (Desktop/Tablet/Mobile)
-⚡ Animations CSS fluides (fadeIn, slideDown)
-🎯 Navigation Sidebar intuitive
-👤 Profil étudiant personnalisé
-🔢 Saisie intuitive avec placeholders exemples
-💫 Feedback visuel immédiat (success states)
+## ✨ Fonctionnalités
+- 🎨 Interface **Glassmorphism** avec dégradés animés
+- 📱 Design **Responsive** (Desktop/Tablet/Mobile)
+- ⚡ Animations CSS fluides (*fadeIn*, *slideDown*)
+- 📂 Navigation **Sidebar** intuitive
+- 👤 Profil étudiant personnalisable
+- 🔢 Saisie avec **placeholders** d'exemples
+- 💫 Feedback visuel immédiat (*success states*)
 
 
-👨‍💻 Auteur
-Moetez Rouihem
-Étudiant 1ère Année 
-**ENSI**
-Projet académique **
-📞 Contact
-Pour toute question ou suggestion, n'hésitez pas à :
-Ouvrir une issue sur GitHub
-Me contacter par email : moetez.rouihem@ensi-uma.com
+## 👨‍💻 Auteur
+**Moetez Rouihem**  
+Étudiant 1ère Année — **ENSI**  
+Projet académique
+## 📞 Contact
+Pour toute question ou suggestion, n'hésitez pas à :  
+- Ouvrir une *issue* sur GitHub  
+- Me contacter par email : **moetez.rouihem@ensi-uma.com**
