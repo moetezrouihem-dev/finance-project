@@ -24,3 +24,7 @@ Moetez Rouihem
 Étudiant 1ère Année 
 **ENSI**
 Projet académique **
+📞 Contact
+Pour toute question ou suggestion, n'hésitez pas à :
+Ouvrir une issue sur GitHub
+Me contacter par email : moetez.rouihem@ensi-uma.com
