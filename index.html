@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Manager | Moetez Rouihem - ENSI</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="profile-card">
+                <div class="avatar-circle">MR</div>
+                <div class="student-name">Moetez Rouihem</div>
+                <div class="student-info">Génie Logiciel</div>
+                <div class="school-badge">ENSI - 1ère Année</div>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active" onclick="switchTab('dashboard', this)">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </li>
+                    <li onclick="switchTab('epargne', this)">
+                        <i class="fas fa-piggy-bank"></i> Intérêts Simples
+                    </li>
+                    <li onclick="switchTab('escompte', this)">
+                        <i class="fas fa-file-invoice-dollar"></i> Escompte
+                    </li>
+                    <li onclick="switchTab('emprunt', this)">
+                        <i class="fas fa-building-columns"></i> Annuités & Emprunts
+                    </li>
+                    <li onclick="switchTab('portefeuille', this)">
+                        <i class="fas fa-chart-pie"></i> Gestion Portefeuille
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 Projet Mathématiques Financières
+        </div>
+    </aside>
+
+    <main>
+        <section id="dashboard" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Bonjour, Moetez 👋</h1>
+                <p class="page-subtitle">Prêt pour tes calculs financiers aujourd'hui ?</p>
+            </div>
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <h3><i class="fas fa-graduation-cap" style="color:var(--primary)"></i> Module Projet</h3>
+                    <p>Cette application regroupe tous les sujets demandés : intérêts, escompte, annuités et optimisation.</p>
+                </div>
+                <div class="glass-card">
+                    <h3><i class="fas fa-code" style="color:var(--accent)"></i> Technologie</h3>
+                    <p>Développé en HTML5, CSS3 Moderne et JavaScript Vanilla.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="epargne" class="content-section">
+            <div class="page-header">
+                <h1 class="page-title">Intérêts Simples</h1>
+            </div>
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <div class="form-group">
+                        <label>Capital Initial (C)</label>
+                        <input type="number" id="ep_C" placeholder="ex: 5000">
+                    </div>
+                    <div class="form-group">
+                        <label>Taux Annuel % (t)</label>
+                        <input type="number" id="ep_t" placeholder="ex: 4">
+                    </div>
+                    <div class="form-group">
+                        <label>Durée (mois)</label>
+                        <input type="number" id="ep_n" placeholder="ex: 18">
+                    </div>
+                    <button class="action-btn" onclick="calculerEpargne()">Calculer</button>
+                    <div id="res_epargne" class="result-display" style="display:none;">
+                        <div class="value-highlight" id="val_acquise">0.00 DT</div>
+                        <div class="res-sub">Intérêts : <span id="val_interets">0.00 DT</span></div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <canvas id="chartEpargne"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="escompte" class="content-section">
+            <div class="page-header"><h1 class="page-title">Escompte</h1></div>
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <div class="form-group"><label>Valeur Nominale (V)</label><input type="number" id="esc_V"></div>
+                    <div class="form-group"><label>Jours (n)</label><input type="number" id="esc_n"></div>
+                    <div class="form-group"><label>Taux % (t)</label><input type="number" id="esc_t"></div>
+                    <button class="action-btn" onclick="calculerEscompte()">Générer</button>
+                </div>
+                <div class="glass-card">
+                    <div id="res_escompte_details" style="display:none;">
+                        <div class="flex-row"><span>Agio :</span><span class="neg-val" id="val_esc_comm">0.00</span></div>
+                        <hr class="divider">
+                        <div class="center-text">
+                            <div class="value-highlight" id="val_esc_net">0.00 DT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="emprunt" class="content-section">
+            <div class="page-header"><h1 class="page-title">Emprunts</h1></div>
+            <div class="glass-card mb-20">
+                <div class="grid-3">
+                    <div class="form-group"><label>Montant</label><input type="number" id="emp_K" value="20000"></div>
+                    <div class="form-group"><label>Taux %</label><input type="number" id="emp_i" value="5.5"></div>
+                    <div class="form-group"><label>Années</label><input type="number" id="emp_n" value="5"></div>
+                </div>
+                <button class="action-btn" onclick="calculerEmprunt()">Calculer</button>
+            </div>
+            <div class="glass-card scroll-x">
+                <table id="table_emprunt">
+                    <thead>
+                        <tr><th>Année</th><th>Restant</th><th>Intérêts</th><th>Amort.</th><th>Annuité</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="portefeuille" class="content-section">
+            <div class="page-header"><h1 class="page-title">Portefeuille</h1></div>
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <div class="form-group"><label>Rendement A %</label><input type="number" id="pf_r1" value="12"></div>
+                    <div class="form-group"><label>Rendement B %</label><input type="number" id="pf_r2" value="4"></div>
+                    <input type="range" id="pf_w1" min="0" max="100" value="50" oninput="updatePfDisplay(this.value)">
+                    <div class="flex-row">
+                        <span class="primary-text">A: <span id="lbl_w1">50</span>%</span>
+                        <span class="accent-text">B: <span id="lbl_w2">50</span>%</span>
+                    </div>
+                    <button class="action-btn" onclick="calculerPortefeuille()">Simuler</button>
+                    <div id="res_pf" class="result-display center-text" style="display:none;">
+                        <div class="value-highlight" id="pf_global">0.00 %</div>
+                    </div>
+                </div>
+                <div class="glass-card"><canvas id="chartPf"></canvas></div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
